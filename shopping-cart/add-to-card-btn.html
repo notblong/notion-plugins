@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Cart Button</title>
+    <style>
+        button {
+            background: #fbca1f;
+            font-family: inherit;
+            padding: 0.6em 1.3em;
+            font-weight: 900;
+            font-size: 18px;
+            border: 3px solid black;
+            border-radius: 0.4em;
+            box-shadow: 0.1em 0.1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: translate(-0.05em, -0.05em);
+            box-shadow: 0.15em 0.15em;
+        }
+
+        button:active {
+            transform: translate(0.05em, 0.05em);
+            box-shadow: 0.05em 0.05em;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="onClick()">Add to Card</button>
+    <script>
+        function getQueryVariable(variable) {
+            let query = window.location.search.substring(1);
+            let vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                let pair = vars[i].split("=");
+                if (pair[0] == variable) { return pair[1]; }
+            }
+            return null;
+        }
+
+        function onClick() {
+            const item = {
+                name: getQueryVariable('name'),
+                price: getQueryVariable('price'),
+                img: getQueryVariable('img'),
+            };
+            let card = localStorage.getItem('notion-shoping-card');
+            if (!card) {
+                card = [item];
+            } else {
+                card = JSON.parse(card);
+                card.push(item);
+            }
+            console.log(card);
+            localStorage.setItem('notion-shoping-card', JSON.stringify(card));
+            alert('Add success!')
+        }
+    </script>
+</body>
+
+</html>
