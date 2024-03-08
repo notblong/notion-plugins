@@ -9,7 +9,7 @@
         button {
             background: #fbca1f;
             font-family: inherit;
-            padding: 0.6em 1.3em;
+            padding: 0.4em 2em;
             font-weight: 900;
             font-size: 18px;
             border: 3px solid black;
@@ -32,18 +32,17 @@
 
 <body>
     <button>
-        <span id="number"></span>&nbsp;Card
+        <span id="number"></span>
     </button>
     <script>
         function init() {
             let target = document.getElementById("number");
             let card = localStorage.getItem('notion-shoping-card');
-            // target.removeChild();
             if (!card) {
-                target.innerHTML = "0";
+                target.innerHTML = "0 Item";
             } else {
                 card = JSON.parse(card);
-                target.innerHTML = card.length;
+                target.innerHTML = `${card.length} Items`;
             }
         }
         init()
