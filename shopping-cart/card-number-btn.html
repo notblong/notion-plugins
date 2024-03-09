@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add to Cart Button</title>
     <style>
-        button {
+        .button {
             background: #fbca1f;
             font-family: inherit;
             padding: 0.4em 2em;
@@ -16,14 +16,16 @@
             border-radius: 0.4em;
             box-shadow: 0.1em 0.1em;
             cursor: pointer;
+            text-decoration: none;
+            color: black;
         }
 
-        button:hover {
+        .button:hover {
             transform: translate(-0.05em, -0.05em);
             box-shadow: 0.15em 0.15em;
         }
 
-        button:active {
+        .button:active {
             transform: translate(0.05em, 0.05em);
             box-shadow: 0.05em 0.05em;
         }
@@ -31,14 +33,14 @@
 </head>
 
 <body>
-    <button>
+    <a class="button" href="https://juvenile-deal-ff2.notion.site/Gi-h-ng-b77a53146a474b30aa8cd76abaac61cd">
         <span id="number"></span>
-    </button>
+    </a>
     <script>
         function init() {
             let target = document.getElementById("number");
             let card = localStorage.getItem('notion-shoping-card');
-            if (!card) {
+            if ((card ?? []).length == 0) {
                 target.innerHTML = "0 Item";
             } else {
                 card = JSON.parse(card);
